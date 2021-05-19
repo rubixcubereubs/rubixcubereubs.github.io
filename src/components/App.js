@@ -11,17 +11,31 @@ function App() {
     height: "100vh",
     backgroundImage: `url(${background})`,
     backgroundSize: "100vw 100vh",
+    position: 'relative',
     
   };
 
   const containerStyles = {
-    backgroundColor: "rgba(255,255,255,0.8)"
+    backgroundColor: "rgba(255,255,255,0.8)",
+   padding: "20px",
+    margin: "auto",
+    width: "auto",
+    justifyContent: "center",
+    position: "relative",
+    top: "30%",
+  
+
+    
+  }
+
+  const titleStyles = {
+    textAlign: 'center'
   }
   return (
     <div style={pageStyles}>
       <Container style={containerStyles}>
         <Row>
-          <Col md >
+          <Col md style={titleStyles} >
             <h1>This is Your Invite</h1>
             <h3>You better feel special!</h3>
           </Col>

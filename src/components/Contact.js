@@ -2,8 +2,13 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 
 const DateForm = () => {
+
+    const formStyles = {
+        border: "1px solid black",
+        padding: "5px"
+    }
   return (
-    <Form>
+    <Form style={formStyles}>
       <Form.Group controlId="date">
         <Form.Label>Date</Form.Label>
         <Form.Control type="date" />
