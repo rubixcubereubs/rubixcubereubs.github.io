@@ -71,6 +71,7 @@ function App() {
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
+      alert("Damn fool, fill out the form!!!");
     }
     if (form.checkValidity() === true) {
       e.preventDefault();
@@ -86,10 +87,10 @@ function App() {
       });
       emailjs
         .sendForm(
-          "service_2zw9vke",
-          "template_gvq880j",
+          process.env.REACT_APP_SERVICE_ID,
+          process.env.REACT_APP_TEMPLATE_ID,
           e.target,
-          "user_2jPxYVIViVc0qutESc8QY"
+          process.env.REACT_APP_USER_ID
         )
         .then(
           (result) => {
