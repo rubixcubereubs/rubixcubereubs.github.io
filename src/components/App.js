@@ -1,57 +1,146 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import emailjs from "emailjs-com";
 import "../App.css";
-import DateForm from "./Contact";
-import background from "../media/galaxy.jpg"
+import TheDateForm from "./form";
+import background from "../media/galaxy.jpg";
 
 function App() {
   const pageStyles = {
     backgroundColor: "black",
-    color: "red",
-    height: "100vh",
+    color: "darkgoldenrod",
+    height: "100%",
     backgroundImage: `url(${background})`,
-    backgroundSize: "100vw 100vh",
-    position: 'relative',
-    
+    backgroundSize: "cover",
+    position: "relative",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   };
 
   const containerStyles = {
-    backgroundColor: "rgba(255,255,255,0.8)",
-   padding: "20px",
+    //backgroundColor: "rgba(255,255,255,0.8)",
+    padding: "20px",
     margin: "auto",
     width: "auto",
     justifyContent: "center",
     position: "relative",
-    top: "30%",
-  
-
-    
-  }
+    //top: "30%",
+    //border: "1px solid red",
+  };
 
   const titleStyles = {
-    textAlign: 'center'
-  }
+    textAlign: "center",
+    border: "1px solid black",
+    borderRadius: "10px",
+    marginBottom: "5vh",
+    backgroundColor: "rgba(0,0,0,0.8)",
+  };
+
+  const textStyles = {
+    border: "1px solid black",
+    borderRadius: "10px",
+    backgroundColor: "rgba(0,0,0,0.8)",
+  };
+
+  const formStyles = {
+    border: "1px solid black",
+    borderRadius: "10px",
+    padding: "5px",
+    backgroundColor: "rgba(0,0,0,0.8)",
+    width: "auto",
+  };
+
+  const [Contact, setContact] = useState({
+    date: "",
+    time: "",
+    story: "",
+  });
+
+  const HandleContactChange = (e) => {
+    //const updatedContact = [...Contact];
+    const { name, value } = e.target;
+    //updatedContact[e.target.className] = e.target.value;
+    setContact({ ...Contact, [name]: value });
+  };
+
+  // submit
+  const [validated, setValidated] = useState(false);
+
+  const HandleSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (form.checkValidity() === true) {
+      e.preventDefault();
+      setValidated(true);
+      alert(
+        "Yo bighead! I've been notified but I will ignore it because I just wanted to waste yo time sucka!!!!!!"
+      );
+      console.log({ ...Contact });
+      setContact({
+        date: "",
+        time: "",
+        story: "",
+      });
+      emailjs
+        .sendForm(
+          "service_2zw9vke",
+          "template_gvq880j",
+          e.target,
+          "user_2jPxYVIViVc0qutESc8QY"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+      e.target.reset();
+    }
+  };
+
   return (
     <div style={pageStyles}>
       <Container style={containerStyles}>
         <Row>
-          <Col md style={titleStyles} >
-            <h1>This is Your Invite</h1>
-            <h3>You better feel special!</h3>
+          <Col md style={titleStyles}>
+            <h1>OMG is this an invite?</h1>
+            <h3>But it's so shit! What took so long?</h3>
           </Col>
         </Row>
         <Row>
-          <Col md>
+          <Col md style={textStyles}>
             <h3>CONGRATULATIONS!!!</h3>
             <p>
-              You have been invited to watch not one but two scary movies with
-              the magical and quite frankly amazing Reuben. To accept this prize
-              we would need for you to register your intreest by filling out the
-              form.
+              You have been invited to watch the first two Scary Movie films (
+              probably the best two of the lot ) with the magical and quite
+              frankly amazing Reuben. <br />
+              <strong>PETTYNESS ALERT!!!</strong> Seeing as you gave me homework
+              you must complete your own task for the invitation to be accepted.
+              You need to write a short story (Max length 100 words). Topic of
+              the story can be anything you want as I can't be bothered to think
+              of anything right now but yeah DO IT!!!!
+              <br />
+              Pick a date of your choosing and I'm sure your choice will be
+              ignored but that's life.
             </p>
           </Col>
           <Col md>
-            <DateForm />
+            <Form
+              noValidate
+              validated={validated}
+              onSubmit={HandleSubmit}
+              style={formStyles}
+            >
+              <TheDateForm
+                contact={Contact}
+                handleChange={HandleContactChange}
+              />
+            </Form>
           </Col>
         </Row>
       </Container>
