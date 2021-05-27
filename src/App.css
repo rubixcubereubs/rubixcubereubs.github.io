@@ -13,7 +13,17 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+@media (max-width: 480px) {
+  .main {
+    font-size: 12px;
+  }
+  .col-md {
+    margin-bottom: 1vh;
+  }
+div.form-group{
+  margin-bottom: 0%;
+}
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

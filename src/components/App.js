@@ -32,7 +32,7 @@ function App() {
     textAlign: "center",
     border: "1px solid black",
     borderRadius: "10px",
-    marginBottom: "5vh",
+    marginBottom: "1vh",
     backgroundColor: "rgba(0,0,0,0.8)",
   };
 
@@ -105,17 +105,17 @@ function App() {
   };
 
   return (
-    <div style={pageStyles}>
+    <div style={pageStyles} className="main">
       <Container style={containerStyles}>
         <Row>
-          <Col md style={titleStyles}>
-            <h1>OMG is this an invite?</h1>
-            <h3>But it's so shit! What took so long?</h3>
+          <Col md style={titleStyles} id="header">
+            <h3>OMG is this an invite?</h3>
+            <h6>But it's so shit! What took so long?</h6>
           </Col>
         </Row>
         <Row>
           <Col md style={textStyles}>
-            <h3>CONGRATULATIONS!!!</h3>
+            <h6>CONGRATULATIONS!!!</h6>
             <p>
               You have been invited to watch the first two Scary Movie films (
               probably the best two of the lot ) with the magical and quite
