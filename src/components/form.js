@@ -2,12 +2,6 @@ import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 
 function TheDateForm({ handleChange, contact }) {
-  const formStyles = {
-    //width: 'auto'
-  };
-
-  const dateTimeStyles = {};
-
   const storyStyles = {
     width: "125%",
   };
