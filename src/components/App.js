@@ -71,6 +71,9 @@ function App() {
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
+      if (Contact.story.length <= 50) {
+        alert("wow, so short...continue then init!");
+      }
       alert("Damn fool, fill out the form!!!");
     }
     if (form.checkValidity() === true) {

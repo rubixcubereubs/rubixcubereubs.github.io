@@ -54,6 +54,7 @@ function TheDateForm({ handleChange, contact }) {
               <Form.Control
                 required
                 as="textarea"
+                minLength="20"
                 maxLength="200"
                 spellCheck="true"
                 style={storyStyles}
